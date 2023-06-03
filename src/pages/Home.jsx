@@ -4,6 +4,7 @@ import Features from "../layouts/Features";
 import Footer from "../layouts/Footer";
 
 import { useEffect } from "react";
+import store from "../libs/redux/store/store";
 
 export default function Home() {
 
@@ -13,7 +14,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar logged={false} />
+      <Navbar logged={store.getState().userIsLogged} />
       <main>
         <HeroSection />
         <Features />

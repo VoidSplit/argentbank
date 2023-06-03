@@ -1,7 +1,11 @@
 import "./styles/SubmitButton.css";
 
-export default function SubmitButton({label}) {
+export default function SubmitButton({label, handleFunction}) {
+  /*const onclickevent = () => {
+    console.log(store.getState())
+    callApi("LOGIN", "test")
+  }*/
   return (
-    <button className="sign-in-button">{label}</button>
+    <div className="sign-in-button" onClick={handleFunction}>{label}</div>
   );
 };

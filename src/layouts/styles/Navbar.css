@@ -4,13 +4,16 @@
 	align-items: center;
 	padding: 5px 20px;
 }
-
-.main-nav a {
-	font-weight: bold;
+.nav-item-wrapper {
+	display: flex;
+}
+.main-nav .main-nav-item {
+	display: inline;
 	color: #2c3e50;
+	font-weight: bold;
 }
 
-.main-nav a.router-link-exact-active {
+.main-nav .main-nav-item.router-link-exact-active {
 	color: #42b983;
 }
 

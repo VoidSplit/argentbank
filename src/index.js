@@ -4,10 +4,16 @@ import './assets/global.css';
 import RouteManager from './routes';
 import reportWebVitals from './reportWebVitals';
 
+import { Provider } from 'react-redux'
+
+import store from "./libs/redux/store/store";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouteManager />
+    <Provider store={store}>
+      <RouteManager />
+    </Provider>
   </React.StrictMode>
 );
 
