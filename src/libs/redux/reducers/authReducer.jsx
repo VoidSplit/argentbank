@@ -1,10 +1,12 @@
-import { CHANGE_TOKEN, SET_USER_NAME, CHANGE_REMEMBER, LOG_OUT } from '../actions/authActions';
+import { CHANGE_TOKEN, SET_USER_NAME, CHANGE_REMEMBER, LOG_OUT, CHANGE_INFOS } from '../actions/authActions';
 
 const initialState = {
     userIsLogged: false,
     firstName: '',
     lastName: '',
     rememberMeChecked: false,
+    email: "",
+    password: "",
     token: null,
     error: null
 };
@@ -17,9 +19,16 @@ const authReducer = (state = initialState, action) => {
                 userIsLogged: true,
                 token: action.payload.token,
             }
+        case CHANGE_INFOS: 
+            return {
+                ...state,
+                email: action.payload.email,
+                password: action.payload.password
+            }
         case SET_USER_NAME:
             return {
                 ...state,
+                userIsLogged: true,
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName
             }
@@ -29,12 +38,23 @@ const authReducer = (state = initialState, action) => {
                 rememberMeChecked: action.payload.remember
             }
         case LOG_OUT:
-            return {
+            if(!{state}.state.rememberMeChecked) return {
                 ...state,
                 userIsLogged: false,
                 firstName: '',
                 lastName: '',
                 rememberMeChecked: false,
+                email: "",
+                password: "",
+                token: null,
+                error: null
+            }
+            if({state}.state.rememberMeChecked) return {
+                ...state,
+                userIsLogged: false,
+                firstName: '',
+                lastName: '',
+                rememberMeChecked: true,
                 token: null,
                 error: null
             }

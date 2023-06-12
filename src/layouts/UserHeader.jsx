@@ -1,41 +1,11 @@
-import { useEffect, createRef, useState } from "react";
+import { useState } from "react";
 import store from "../libs/redux/store/store";
 import "./styles/UserHeader.css";
-import { setUserName } from "../libs/redux/actions/authActions";
+import { ChangeUserName } from "../services/api/apiCall";
 
 export default function UserHeader() {
   const [isOpen, setState] = useState(false)
   const [user, changeUserInfos] = useState({firstName: store.getState().firstName, lastName: store.getState().lastName})
-    const changeUserName = async (firstName, lastName) =>  {
-        try {
-          const token = store.getState().token
-    
-          const requestOptions = {
-            method: 'PUT',
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-              Authorization: 'Bearer' + token
-            },
-            body: JSON.stringify({ firstName: firstName, lastName: lastName })
-          };
-    
-          const response = await fetch('http://localhost:3001/api/v1/user/profile', requestOptions);
-    
-          if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-          }
-    
-          const data = await response.json();
-    
-          if(data.status === 200) {
-            store.dispatch(setUserName(data.body.firstName, data.body.lastName))
-            changeUserInfos({firstName: data.body.firstName, lastName: data.body.lastName})
-          }
-    
-        } catch (error) {
-          console.error(`Something went wrong: ${error}`);
-        }
-    }
     const toggleModal = () => {
       setState(!isOpen)
     }
@@ -45,7 +15,7 @@ export default function UserHeader() {
       const lastName = e.target.lastname.value;
 
       if(firstName !== "" && lastName !== "") {
-        changeUserName(firstName, lastName)
+        ChangeUserName(firstName, lastName, changeUserInfos)
         e.target.firstname.value = ""
         e.target.lastname.value = ""
         toggleModal()

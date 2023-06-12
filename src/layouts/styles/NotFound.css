@@ -1,0 +1,21 @@
+main.notfound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+.notfound-text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 100%;
+    margin: auto 0;
+    gap: 20px;
+}
+.notfound-text h1 {
+    margin: 0;
+    font-size: 3rem;
+}

@@ -34,7 +34,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /account/transaction:{id}:
+  /account/transaction/{id}:
     get:
         security:
           - Bearer: []
@@ -76,6 +76,11 @@ paths:
             type: string
             name: Authorization
             description: Attach Bearer JWT token
+            required: true
+          - in: path
+            type: number
+            name: id
+            description: id Transaction
             required: true
           - in: body
             name: Transaction
